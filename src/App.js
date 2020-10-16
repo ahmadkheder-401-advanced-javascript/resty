@@ -1,5 +1,4 @@
 import React from 'react';
-// import './App.css';
 import Main from './components/main/main';
 import Header from './components/header/header'
 import Footer from './components/footer/footer'
@@ -26,8 +25,6 @@ render(){
         {console.log('urlData', this.state.url)}
         <Results count={this.state.count} headers={this.state.headers} results={this.state.result} />
         <Footer />
-
-
     </div>
   );
 }
