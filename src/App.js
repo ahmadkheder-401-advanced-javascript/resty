@@ -5,7 +5,7 @@ import './components-styles/reset.scss'
 import './components-styles/colors.scss'
 import Header from './components/header.jsx';
 import Footer from './components/footer.jsx';
-import Form from './components/form.jsx';
+import Form from './components/form.js';
 import History from './components/history.jsx'
 import Results from './components/Results'
 import { When } from 'react-if'
