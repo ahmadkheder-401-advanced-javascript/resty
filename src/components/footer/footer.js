@@ -1,10 +1,10 @@
 import React from 'react';
 import './footer.scss';
+class Footer extends React.Component {
 
-const Footer  = ()=>{
-  return(
-    <footer>&copy; 2020 CodeFellows</footer>
-  )
+  render() { 
+    return ( <footer className="footer">&copy; 2020  'Ahmad'</footer> );
+  }
 }
-
+ 
 export default Footer;
