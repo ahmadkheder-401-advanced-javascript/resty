@@ -1,33 +1,63 @@
+
 import React from 'react';
-import Main from './components/main/main';
-import Header from './components/header/header'
-import Footer from './components/footer/footer'
-import Results from './components/Results/Results'
+import { BrowserRouter, Route } from 'react-router-dom';
+import './components-styles/reset.scss'
+import './components-styles/colors.scss'
+import Header from './components/header.jsx';
+import Footer from './components/footer.jsx';
+import Form from './components/form.jsx';
+import History from './components/history.jsx'
+import Results from './components/Results'
+import { When } from 'react-if'
+
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      count:0,
-      result:[],
-      headers:[]
-      };
-    }
-    
-    urlHandler = (count,result) =>{
-      this.setState({count,result});
-    }
-render(){
+  // init state
+  state = {
+    count: null,
+    resultArr: null,
+    footerToggle: false,
+    history: JSON.parse(localStorage.getItem('history')),
+    formValues: { url: NaN, method: NaN, body: NaN },
+  };
+  formHandler = (count, resultArr) => {
+    this.setState({
+      count: count,
+      resultArr: resultArr,
+      footerToggle: !this.state.footerToggle,
+      history: JSON.parse(localStorage.getItem('history')),
+    });
+  }
+  formValuesHandler = obj => {
+    console.log('clicked-app')
+    this.setState({ formValues: obj });
+  }
 
-  return (
-    <div className="App">
-        <Header />
-        <Main formData ={this.urlHandler}/>
-        {console.log('urlData', this.state.url)}
-        <Results count={this.state.count} headers={this.state.headers} results={this.state.result} />
-        <Footer />
-    </div>
-  );
-}
-}
 
+  render() {
+    return (
+      <React.Fragment>
+        <BrowserRouter>
+
+          <Header />
+          <Route exact path="/">
+            <Form formHandler={this.formHandler} formValues={this.state.formValues} />
+            <When condition={this.state.history !== undefined}>
+              <History formValuesHandler={this.formValuesHandler} history={this.state.history} withBody={false} />
+            </When>
+            <When condition={!!this.state.resultArr}>
+              <Results exact pa results={this.state.resultArr} />
+            </When>
+          </Route>
+          <Route exact path="/History">
+            <History history={this.state.history} withBody={true} />
+          </Route>
+          <Route exact path="/help">
+            <p>This is help </p>
+          </Route>
+          <Footer footerClass={this.state.footerToggle} />
+        </BrowserRouter>
+      </React.Fragment>
+    )
+  }
+}
 export default App;

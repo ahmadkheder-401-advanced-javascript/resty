@@ -1,8 +1,13 @@
-name: Deploy React App
-on:
-  push
+name: Deployment
+on: 
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     strategy:
       matrix:

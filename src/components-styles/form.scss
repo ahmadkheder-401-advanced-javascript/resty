@@ -1,0 +1,41 @@
+@import "colors.scss";
+main {
+    width: 100%;
+    text-align: center;
+    div {
+        padding: 10px;
+        background-color: $global-primaryColor2;
+        width: 60%;
+        margin: 20px auto;
+        border-radius: 15px;
+        box-shadow: 5px 5px $global-primaryColor3;
+        form {
+            margin-bottom: 13px;
+            button {
+                width: 50px;
+                height: 25px;
+                background-color: $global-primaryColor3;
+                border-radius: 5px;
+                font-weight: 600;
+                color: $global-primaryColor1;
+            }
+            input[type="url"] {
+                margin-left: 25px;
+                margin-bottom: 15px;
+                margin: 10px 0px 25px;
+                width: 40%;
+            }
+            label {
+                margin-right: 15px;
+                font-weight: 600;
+                font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+                color: $global-primaryColor3;
+            }
+            textarea {
+                display: block;
+                margin: 10px auto 5px auto;
+                width: 80%;
+            }
+        }
+    }
+}
